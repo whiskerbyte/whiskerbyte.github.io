@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta & SEO -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>whiskerbyte.github.io</title>
+    <meta
+      name="description"
+      content="whiskerByte's official GitHub Pages site. Explore projects, team, and more."
+    />
+    <meta
+      name="keywords"
+      content="whiskerByte, GitHub Pages, software, projects, team, coding, education"
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <style>
+      /*==================================================
+        CSS VARIABLES & GLOBAL RESET
+      ==================================================*/
+      :root {
+        --font-body: 'Poppins', sans-serif;
+        --font-code: 'Source Code Pro', monospace;
+
+        --color-bg: #f7f3ef;
+        --color-bg-alt: #e8e2da;
+        --color-text: #3b3b3b;
+        --color-link: #8c6b4f;
+        --color-link-hover: #6f5531;
+        --color-border: #ccc;
+        --color-shadow: rgba(0, 0, 0, 0.1);
+
+        --container-max-width: 960px;
+        --padding-container: 40px 60px;
+      }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-body);
+        background: linear-gradient(135deg, var(--color-bg), var(--color-bg-alt));
+        color: var(--color-text);
+        line-height: 1.6;
+        padding: 20px;
+      }
+
+      /*==================================================
+        LINK STYLES
+      ==================================================*/
+      a {
+        color: var(--color-link);
+        text-decoration: none;
+        transition: color 0.3s, transform 0.2s;
+        position: relative;
+      }
+      a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 2px;
+        background: var(--color-link);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s;
+      }
+      a:hover {
+        color: var(--color-link-hover);
+        transform: translateY(-2px);
+      }
+      a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+      a:active {
+        transform: scale(0.98);
+      }
+
+      /*==================================================
+        CONTAINER & GENERAL LAYOUT
+      ==================================================*/
+      .container {
+        max-width: var(--container-max-width);
+        margin: 0 auto;
+        background: #fff;
+        padding: var(--padding-container);
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        box-shadow: 0 4px 6px var(--color-shadow);
+      }
+
+      /*==================================================
+        ANIMATION SETUP
+      ==================================================*/
+      .animate {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease-out;
+      }
+      .animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /*==================================================
+        HEADER & SITE INFO
+      ==================================================*/
+      header {
+        margin-bottom: 40px;
+        border-bottom: 2px dotted var(--color-border);
+        padding-bottom: 20px;
+      }
+      .logo-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .logo-img {
+        height: 40px;
+        margin-right: 12px;
+      }
+      .logo-text {
+        font-size: 2rem;
+        font-weight: 600;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      }
+      .site-info {
+        font-size: 1.1rem;
+        color: var(--color-link-hover);
+        margin-top: 8px;
+        font-family: var(--font-code);
+      }
+      nav {
+        margin-top: 10px;
+      }
+      nav a {
+        margin-right: 15px;
+        font-size: 0.95rem;
+      }
+
+      /*==================================================
+        SECTION TITLES
+      ==================================================*/
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+        border-bottom: 1px dashed var(--color-border);
+        padding-bottom: 8px;
+        font-family: var(--font-code);
+      }
+
+      /*==================================================
+        PROJECTS SECTION
+      ==================================================*/
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+      .project-card {
+        background: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 4px;
+        transition: background 0.3s, transform 0.3s;
+      }
+      .project-card:hover {
+        background: #f0f0f0;
+        transform: translateY(-3px);
+      }
+      .project-card h2 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-code);
+      }
+      .project-logo {
+        height: 28px;
+      }
+      .project-card p {
+        font-size: 0.95rem;
+        color: #555;
+      }
+
+      /*==================================================
+        TEAM SECTION
+      ==================================================*/
+      .team-members {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 40px;
+      }
+      .member {
+        text-align: center;
+        transition: transform 0.3s;
+      }
+      .member:hover {
+        transform: scale(1.05);
+      }
+      .member img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid var(--color-link);
+        margin-bottom: 8px;
+      }
+      .member a {
+        font-size: 0.95rem;
+        color: var(--color-link);
+      }
+
+      /*==================================================
+        BLOG & SOCIAL SECTION
+      ==================================================*/
+      .blog-link {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .blog-link a {
+        padding: 12px 24px;
+        background: var(--color-link);
+        color: #fff;
+        border-radius: 4px;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+      }
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+      .social-links a {
+        padding: 10px 20px;
+        border: 1px solid var(--color-link);
+        border-radius: 4px;
+        font-size: 0.95rem;
+        transition: background 0.3s, color 0.3s, transform 0.2s;
+      }
+      .social-links a:hover {
+        background: var(--color-link);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      /*==================================================
+        FOOTER
+      ==================================================*/
+      footer {
+        text-align: center;
+        font-size: 0.85rem;
+        color: #777;
+        border-top: 1px solid var(--color-border);
+        padding-top: 20px;
+      }
+
+      /*==================================================
+        CODING/EDUCATION THEME (CODE BLOCKS)
+      ==================================================*/
+      pre,
+      code {
+        font-family: var(--font-code);
+        background: #f1f1f1;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="animate">
+        <div class="logo-container">
+          <img
+            src="whiskerbyte-logo.png"
+            alt="whiskerByte Logo"
+            class="logo-img"
+          />
+          <div>
+            <div class="logo-text">whiskerByte</div>
+            <div class="site-info">whiskerbyte.github.io</div>
+          </div>
+        </div>
+        <nav>
+          <a href="#projects">Projects</a>
+          <a href="#team">Our Team</a>
+          <a href="#blog">Blog</a>
+        </nav>
+      </header>
+
+      <!-- Main Content -->
+      <main>
+        <!-- Projects Section -->
+        <section id="projects" class="animate">
+          <h1 class="section-title">Projects</h1>
+          <div class="projects">
+            <div class="project-card animate">
+              <h2>
+                <a href="https://shaketolearn.com" target="_blank">
+                  <img
+                    src="img/projects/shaketolearn-logo.png"
+                    alt="shaketolearn logo"
+                    class="project-logo"
+                    loading="lazy"
+                  />
+                  shaketolearn.com
+                </a>
+              </h2>
+              <p>
+                English word learning application – MVP v1.0.0 (Published)
+              </p>
+            </div>
+            <div class="project-card animate">
+              <h2>
+                <a href="https://mathcker.com" target="_blank">
+                  <img
+                    src="img/projects/mathcker-logo.png"
+                    alt="mathcker logo"
+                    class="project-logo"
+                    loading="lazy"
+                  />
+                  mathcker.com
+                </a>
+              </h2>
+              <p>
+                Mathematics community &amp; exercise platform (Coming Soon)
+              </p>
+            </div>
+            <div class="project-card animate">
+              <h2>
+                <a href="https://unicostil.com/" target="_blank">
+                  <img
+                    src="img/projects/unicostil-logo.png"
+                    alt="unicostil logo"
+                    class="project-logo"
+                    loading="lazy"
+                  />
+                  unicostil.com
+                </a>
+              </h2>
+              <p>Tattoo &amp; styling application (Coming Soon)</p>
+            </div>
+            <div class="project-card animate">
+              <h2>
+                <a href="https://sosyal17.com" target="_blank">
+                  <img
+                    src="img/projects/sosyal17-logo.png"
+                    alt="sosyal17 logo"
+                    class="project-logo"
+                    loading="lazy"
+                  />
+                  sosyal17.com
+                </a>
+              </h2>
+              <p>
+                Local friendship app for Çanakkale (Coming Soon)
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="animate">
+          <h1 class="section-title">Our Team</h1>
+          <div class="team-members">
+            <div class="member animate">
+              <a href="https://keremaydin.com" target="_blank">
+                <img src="img/members/keremaydin.jpg" alt="Kerem Aydin" />
+                <div>
+                  Kerem Aydin<br /><small>Founder</small>
+                </div>
+              </a>
+            </div>
+            <div class="member animate">
+              <a href="https://www.linkedin.com/in/n3o/" target="_blank">
+                <img src="img/members/sezercoban.jpg" alt="Sezer Çoban" />
+                <div>
+                  Sezer Çoban<br /><small>Backend Developer</small>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Blog & Social Links -->
+        <section id="blog" class="animate">
+          <div class="blog-link">
+            <a href="https://blog.whiskerbyte.com" target="_blank"
+              >Visit Our Blog</a
+            >
+          </div>
+          <div class="social-links">
+            <a href="https://github.com/whiskerbyte" target="_blank">GitHub</a>
+            <a
+              href="https://www.facebook.com/whiskerbyte/"
+              target="_blank"
+              >Facebook</a
+            >
+            <a
+              href="https://www.linkedin.com/company/whiskerbyte-co/"
+              target="_blank"
+              >LinkedIn</a
+            >
+            <a
+              href="https://www.instagram.com/whiskerbyte/"
+              target="_blank"
+              >Instagram</a
+            >
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="animate">
+        <a href="mailto:contact@whiskerbyte.com">contact@whiskerbyte.com</a>
+        | since 2023
+      </footer>
+    </div>
+
+    <!-- Scroll Animation Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const animatedElements = document.querySelectorAll(".animate");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        animatedElements.forEach((el) => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>
